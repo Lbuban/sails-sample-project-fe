@@ -24,12 +24,35 @@
  *
  */
 
-(function(){
+ (function() {
 
-  $(function(){
+  $(function() {
+    $("#addStudentForm").validate({
+      errorClass: "text-danger",
 
-  	//code goes here
-
+      rules: {
+        first_name: {
+          required: true,
+          minlength: 2,
+          message: "Please specify your name"
+        },
+        last_name: {
+          required: true,
+          minlength: 2
+        },
+        start_date: {
+          dateISO: true,
+          required: true,
+          minlength: 2
+        }
+      },
+      messages: {
+        first_name: {
+          required: "this is required",
+          minlength: "this is the new error"
+        }
+      }
+    });
   })
 
 })();

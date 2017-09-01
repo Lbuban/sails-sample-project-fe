@@ -44,8 +44,25 @@
 
    $(function(){
 
-    //code goes here
+    $("#updateStudentForm :input").prop("disabled", true);
 
+      $("#student_id").on("change", function(){
+
+          select = $(this).find("option:selected").val();
+
+    $.get("http://localhost:1337/student/" + select, function(student){
+      $.each(student, function(key, val){
+          //find the input field that matches the name of the key
+          let el = $('[name="'+key+'"]');
+          //find the type of field that we selected
+          let type = el.attr('type');
+          el.val(val);
+        })
+      })
+     $("#updateStudentForm :input").prop("disabled", false);
+
+     })
+
+      //  $("#updateStudentForm")[0].reset()
    })
-
- })();
+})();
